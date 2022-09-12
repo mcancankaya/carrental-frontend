@@ -1,20 +1,30 @@
-<div *ngIf="dataLoaded==false" class="spinner-border text-secondary" role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
-  <div *ngIf="dataLoaded!=false" align="center" class="text-bg-warning p-3">Car Details</div>
-<table *ngIf="dataLoaded!=false" class="table table-striped">
-    <thead>
-            <th>Car Name</th>
-            <th>Brand Name</th>
-            <th>Color Name</th>
-            <th>Daily Price</th>
-    </thead>
-    <tbody>
-        <tr *ngFor="let carDetail of carDetails">
-            <td>{{carDetail.carName}}</td>
-            <td>{{carDetail.brandName}}</td>
-            <td>{{carDetail.colorName}}</td>
-            <td>{{carDetail.dailyPrice}}</td>
-        </tr>
-    </tbody>
+<div
+  *ngIf="dataLoaded == false"
+  class="spinner-border text-secondary"
+  role="status"
+>
+  <span class="sr-only">Loading...</span>
+</div>
+<div *ngIf="dataLoaded != false" class="text-bg-warning p-3">Car Details</div>
+<table *ngIf="dataLoaded != false" router="" class="table table-striped">
+  <thead>
+    <th>Car Id</th>
+    <th>Car Name</th>
+    <th>Brand Name</th>
+    <th>Color Name</th>
+    <th>Daily Price</th>
+  </thead>
+  <tbody>
+    <tr
+      routerLink="detail/{{ carDetail.carId }}"
+      *ngFor="let carDetail of carDetails"
+      (click)="getCurrentCarId(carDetail)"
+    >
+      <td>{{ carDetail.carId }}</td>
+      <td>{{ carDetail.carName }}</td>
+      <td>{{ carDetail.brandName }}</td>
+      <td>{{ carDetail.colorName }}</td>
+      <td>{{ carDetail.dailyPrice }}</td>
+    </tr>
+  </tbody>
 </table>
